@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\lcs.h" />
+    <ClInclude Include="..\..\..\src\paged_vector.h" />
     <ClInclude Include="..\..\..\tests\tester.h" />
   </ItemGroup>
   <ItemGroup>

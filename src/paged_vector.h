@@ -66,6 +66,12 @@ public:
 	{
 		unsigned page_id = new_size / PAGE_SIZE;
 
+		//Delete old pages
+		for (unsigned i = page_id + 1; i < m_pages.size(); ++i)
+			delete m_pages[i];
+
+		m_pages.resize(page_id + 1);
+
 		for(unsigned i = 0; i <= page_id; ++i)
 		{
 			if(!m_pages[i])

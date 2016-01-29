@@ -3,14 +3,15 @@
 #define ULTRA_LIB_LCS_H
 
 #include <iostream>
+#include "paged_vector.h"
 
 struct lcs_table
 {
 	using cell_t = unsigned short;
 	enum class step_t {left, up, left_up};
 
-	using container_t = std::vector < cell_t > ;
-
+	//using container_t = std::vector < cell_t > ;
+	using container_t = paged_vector < cell_t >;
 	
 	lcs_table(unsigned _width, unsigned _height)
 		:width(_width), height(_height), pData(width * height, 0)
