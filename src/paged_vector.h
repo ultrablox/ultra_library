@@ -33,8 +33,11 @@ public:
 			delete p;
 	}
 
-	value_t & operator[](unsigned idx)
+	value_t & operator[](size_t idx)
 	{
+#if _DEBUG
+		assert(idx < m_size);
+#endif
 		unsigned page_id = idx / PAGE_SIZE;
 
 		if(!m_pages[page_id])
@@ -45,8 +48,11 @@ public:
 		return m_pages[page_id]->data[idx % PAGE_SIZE];
 	}
 
-	const value_t & operator[](unsigned idx) const
+	const value_t & operator[](size_t idx) const
 	{
+#if _DEBUG
+		assert(idx < m_size);
+#endif
 		unsigned page_id = idx / PAGE_SIZE;
 
 		if(!m_pages[page_id])
@@ -64,15 +70,16 @@ public:
 
 	void resize(size_t new_size, value_t empty_val = value_t())
 	{
-		unsigned page_id = new_size / PAGE_SIZE;
-
+		unsigned new_page_count = new_size / PAGE_SIZE;
+		if (new_size % PAGE_SIZE)
+			++new_page_count;
 		//Delete old pages
-		for (unsigned i = page_id + 1; i < m_pages.size(); ++i)
+		for (unsigned i = new_page_count; i < m_pages.size(); ++i)
 			delete m_pages[i];
 
-		m_pages.resize(page_id + 1);
+		m_pages.resize(new_page_count);
 
-		for(unsigned i = 0; i <= page_id; ++i)
+		for (unsigned i = 0; i < new_page_count; ++i)
 		{
 			if(!m_pages[i])
 			{
@@ -80,6 +87,7 @@ public:
 			}
 		}
 
+		m_size = new_size;
 	}
 
 	void clear()
@@ -92,6 +100,7 @@ public:
 	}
 private:
 	std::vector<page*> m_pages;
+	size_t m_size;
 };
 
 #endif

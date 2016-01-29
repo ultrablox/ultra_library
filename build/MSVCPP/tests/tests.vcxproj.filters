@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\..\src\paged_vector.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\progress_indicator.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\tests\test_dna.cpp">
