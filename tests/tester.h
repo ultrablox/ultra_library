@@ -8,6 +8,8 @@
 #include <sstream>
 #include "USSingleton.h"
 
+#define REAL_EPS 0.001
+
 template<typename T>
 void test_check_eq(const std::string & msg, const T & checked_val, const T & correct_val)
 {
@@ -102,7 +104,7 @@ public:
 	template<typename T, typename U>
 	void check_le_eps(const char * file_name, unsigned line_number, const T & v1, const U & v2)
 	{
-		if (checked_val > correct_val)
+		if (v1 > v2)
 		{
 			/*std::stringstream ss;
 			ss << checked_val << " != " << correct_val;
