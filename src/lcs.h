@@ -3,7 +3,9 @@
 #define ULTRA_LIB_LCS_H
 
 #include <iostream>
+#include <assert.h>
 #include "paged_vector.h"
+#include "progress_indicator.h"
 
 struct lcs_table
 {
@@ -71,6 +73,8 @@ void longest_common_subseq(It x_first, It x_last, It y_first, It y_last, V & des
 	for (unsigned j = 0; j <= n; ++j)
 		ltable.at(0, j) = 0;
 
+	progress_indicator ind(m);
+
 	for (unsigned i = 1; i <= m; ++i)
 	{
 		for (unsigned j = 1; j <= n; ++j)
@@ -83,7 +87,8 @@ void longest_common_subseq(It x_first, It x_last, It y_first, It y_last, V & des
 				ltable.at(i, j) = ltable.at(i, j-1);
 		}
 
-		std::cout << "Building table... " << 100.0f * i / m << "%" << std::endl;
+		//std::cout << "Building table... " << 100.0f * i / m << "%" << std::endl;
+		ind.submit_progress(i);
 	}
 
 	//std::cout << ltable << std::endl;
@@ -94,11 +99,13 @@ void longest_common_subseq(It x_first, It x_last, It y_first, It y_last, V & des
 	auto dest_it = dest.rbegin();
 	unsigned i = m, j = n;
 
+	unsigned found_symbs = 0;
 	while ((i != 0) && (j != 0))
 	{
 		auto cur_step = ltable.step_at(i, j, x_first, y_first);
 		if (cur_step == lcs_table::step_t::left_up)
 		{
+			++found_symbs;
 			*dest_it++ = *(x_first + i - 1);
 			--i;
 			--j;
@@ -108,6 +115,12 @@ void longest_common_subseq(It x_first, It x_last, It y_first, It y_last, V & des
 		else
 			--j;
 	}
+
+	std::cout << "found " << found_symbs << std::endl;
+	assert(subseq_size == std::distance(dest.rbegin(), dest_it));
+
+	//unsigned res_len = std::distance(dest.rbegin(), dest_it);
+	//dest.erase(dest.begin(), dest.begin() + (dest.size() - res_len));
 }
 
 #endif

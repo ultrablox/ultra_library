@@ -28,16 +28,13 @@ SRC_AIRCRACK = $(AIRCRACK_DIR)crypto.c $(AIRCRACK_DIR)aircrack-ptw-lib.c
 OBJS_TEST = $(SRC_TEST:.cpp=.o)
 
 TESTS_BIN = tests
-BRUTE_MD5_BIN = brute_md5
-BRUTE_MD5_MP_BIN = brute_md5_mp
-WPA_BIN = brute_wpa2
 
 .PHONY: depend clean
 
 all:	$(TESTS_BIN)
 	@echo  Simple compiler named mycc has been compiled
 	@echo $(UNAME_S)
-	./$(BIN_DIR)$(TESTS_BIN)
+#	./$(BIN_DIR)$(TESTS_BIN)
 
 $(TESTS_BIN): $(OBJS_TEST) 
 	$(CXX) $(CFLAGS) -o $(BIN_DIR)$(TESTS_BIN) $(OBJS_TEST)
@@ -49,7 +46,7 @@ $(TESTS_BIN): $(OBJS_TEST)
 	$(CC) $(CCFLAGS) -c $<  -o $@
 
 clean:
-	$(RM) $(SRC_DIR)/*.o *~ $(MAIN)
+	$(RM) $(SRC_DIR)*.o $(TESTS_DIR)*.o *~ $(TESTS_BIN)
 
 depend: $(SRC_TEST)
 	makedepend $(INCLUDES) $^
