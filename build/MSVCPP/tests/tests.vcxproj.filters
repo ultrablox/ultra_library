@@ -23,12 +23,24 @@
     <ClInclude Include="..\..\..\src\paged_vector.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\progress_indicator.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\big_int.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\primes.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\tests\test_dna.cpp">
       <Filter>tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\tests\main.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\test_big_int.cpp">
       <Filter>tests</Filter>
     </ClCompile>
   </ItemGroup>

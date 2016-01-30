@@ -37,7 +37,7 @@ public:
 
 		for (auto inv : invokers)
 		{
-			try
+			/*try
 			{
 				inv->run();
 			}
@@ -52,7 +52,9 @@ public:
 				++errorCount;
 				std::cout << "Test terminated with unknown exception" << std::endl;
 				throw;
-			}
+			}*/
+
+				inv->run();
 		}
 			
 
