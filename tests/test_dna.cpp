@@ -28,14 +28,13 @@ void load_string(const std::string & fname, C & str)
 		return (c == '\n') || (c == '\r');
 	});
 
-	std::cout << "Removed " << std::distance(last_it, str.end()) << " returns" << std::endl;
+	//std::cout << "Removed " << std::distance(last_it, str.end()) << " returns" << std::endl;
 
 	str.erase(last_it, str.end());
 }
 
 SURVEY_TEST(lcs_middle)
 {
-	return;
 	std::vector<char> str1, str2;
 
 	load_string("dna_1_small.txt", str1);
