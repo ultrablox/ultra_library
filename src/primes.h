@@ -4,6 +4,7 @@
 
 #include <string>
 #include <stdio.h>
+#include <map>
 #include "big_int.h"
 #include "progress_indicator.h"
 
@@ -47,6 +48,26 @@ bool is_mersenne_prime(const std::string & num)
 	//mersenne_checker<unsigned> checker;
 	mersenne_checker<big_uint> checker;
 	return checker.check_lucas_lehmer(power_val);
+}
+
+void factorize(size_t num, std::map<size_t, unsigned> & decomposition)
+{
+	size_t div = 2;
+
+	while(div <= num)
+	{
+		while((num % div) == 0)
+		{
+			num /= div;
+			auto it = decomposition.find(div);
+			if(it == decomposition.end())
+				decomposition.insert(std::make_pair(div, 1U));
+			else
+				++(it->second);
+		}
+		++div;
+	}
+
 }
 
 #endif

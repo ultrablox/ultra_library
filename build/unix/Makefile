@@ -19,7 +19,7 @@ endif
 
 CFLAGS_MP = $(CFLAGS)
 
-SRC_TEST = $(TESTS_DIR)main.cpp $(TESTS_DIR)test_dna.cpp
+SRC_TEST = $(TESTS_DIR)main.cpp $(TESTS_DIR)test_primes.cpp $(TESTS_DIR)test_thread_pool.cpp $(TESTS_DIR)test_dna.cpp $(TESTS_DIR)test_external_sort.cpp
 
 
 AIRCRACK_DIR = $(PROJECT_ROOT)src/aircrack/

@@ -3,6 +3,7 @@
 #define ULTRA_LIB_PROGRESS_INDICATOR_H
 
 #include <chrono>
+#include <iostream>
 
 class progress_indicator
 {
