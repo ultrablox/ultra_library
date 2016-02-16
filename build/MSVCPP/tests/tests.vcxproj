@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\big_int.h" />
+    <ClInclude Include="..\..\..\src\external_sort.h" />
     <ClInclude Include="..\..\..\src\lcs.h" />
     <ClInclude Include="..\..\..\src\paged_vector.h" />
     <ClInclude Include="..\..\..\src\primes.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="..\..\..\tests\main.cpp" />
     <ClCompile Include="..\..\..\tests\test_big_int.cpp" />
     <ClCompile Include="..\..\..\tests\test_dna.cpp" />
+    <ClCompile Include="..\..\..\tests\test_external_sort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

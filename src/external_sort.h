@@ -4,7 +4,7 @@
 
 
 template<typename T>
-void external_sort(const std::string & file_name)
+void external_sort(const std::string & file_name, unsigned memory_limit = 1024U)
 {
 
 }
