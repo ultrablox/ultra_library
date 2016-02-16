@@ -93,6 +93,7 @@ void external_sort(const std::string & file_name, const std::string & res_fname,
 	const size_t file_size = src_file.tellg();
 
 	const size_t total_element_count = file_size / sizeof(T);
+	assert(total_element_count * sizeof(T) == file_size);
 
 	file_element_count = std::min<size_t>(file_element_count, total_element_count);
 
