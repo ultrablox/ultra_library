@@ -53,6 +53,11 @@ public:
 	}
 
 
+	unsigned thread_count() const
+	{
+		return workers.size();
+	}
+
 	template<typename F>
 	void submit(F task)
 	{

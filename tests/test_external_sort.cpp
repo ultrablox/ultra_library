@@ -15,7 +15,7 @@ SURVEY_TEST(test_external_sort)
   std::default_random_engine generator;
   std::uniform_int_distribution<size_t> val_distr(10000ULL, 4294967295ULL);//4294967295ULL
   
-  unsigned item_count = 1000;
+  unsigned item_count = 10100;
   
   std::vector<unsigned> correct_vec(item_count);
   for(int j = 0; j < item_count; ++j)
@@ -31,15 +31,21 @@ SURVEY_TEST(test_external_sort)
 
   cout << "Sorting with external sort...." << std::endl;
 
-  external_sort<unsigned>("test_file.dat");
+  external_sort<unsigned>("test_file.dat", "res_file.dat", std::less<unsigned>());
 
   cout << "Comparing results..." << std::endl;
   {
-      std::ifstream in_file("test_file.dat", std::ifstream::binary);
+	  std::ifstream in_file("res_file.dat", std::ifstream::binary);
 
-      std::vector<unsigned> new_vec(item_count);
-      in_file.read((char*)new_vec.data(), sizeof(unsigned) * new_vec.size());
+	  std::vector<unsigned> new_vec(item_count);
+	  in_file.read((char*)new_vec.data(), sizeof(unsigned) * new_vec.size());
 
+	  SURVEY_TEST_EQ(is_sorted(new_vec.begin(), new_vec.end()), true);
+
+	  for (unsigned i = 0; i < item_count; ++i)
+	  {
+		  SURVEY_TEST_EQ(new_vec[i], correct_vec[i]);
+	  }
       SURVEY_TEST_EQ(new_vec, correct_vec);
   }
 }
