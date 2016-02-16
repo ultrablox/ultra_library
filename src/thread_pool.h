@@ -97,6 +97,13 @@ public:
 	{
 		return (busyCount.load() > 0);
 	}
+
+	void wait_busy()
+	{
+		while (worker_body());
+		while (is_busy())
+			std::this_thread::yield();
+	}
 private:
 	void worker_thread()
 	{
